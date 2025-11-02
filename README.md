@@ -35,18 +35,44 @@ Perfect for curious minds of all ages!
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/ajfrai/point-to-explain.git
 cd point-to-explain
 
-# Install dependencies (coming soon)
-# pip install -r requirements.txt
+# Install dependencies
+pip install opencv-python numpy
 ```
+
+### Testing the Camera
+
+Test your camera connection with the included camera reader module:
+
+```bash
+# For CSI camera (default)
+python3 camera_reader.py --type csi
+
+# For USB camera
+python3 camera_reader.py --type usb --id 0
+
+# Custom resolution and framerate
+python3 camera_reader.py --type csi --width 1920 --height 1080 --fps 30
+```
+
+Press 'q' to quit, 's' to save a snapshot.
 
 ### Usage
 
 ```bash
 # Run the application (coming soon)
 # python main.py
+```
+
+## Project Structure
+
+```
+point-to-explain/
+├── camera_reader.py      # Camera interface module for CSI/USB cameras
+├── README.md             # This file
+└── LICENSE               # MIT License
 ```
 
 ## Architecture
@@ -56,6 +82,14 @@ This project will leverage:
 - AI/ML models for object recognition
 - Natural language generation for explanations
 - NVIDIA GPU acceleration for real-time performance
+
+### Camera Module
+
+The `camera_reader.py` module provides a unified interface for both CSI and USB cameras:
+- **CSI Camera Support**: Uses GStreamer pipeline with hardware acceleration (nvarguscamerasrc)
+- **USB Camera Support**: Standard OpenCV VideoCapture interface
+- **Features**: Configurable resolution, framerate, and flip methods
+- **Context Manager**: Easy resource management with Python's `with` statement
 
 ## Development Status
 
@@ -71,7 +105,7 @@ This project will leverage:
 
 ## License
 
-TBD
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Contributing
 
