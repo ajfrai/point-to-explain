@@ -39,7 +39,7 @@ git clone https://github.com/ajfrai/point-to-explain.git
 cd point-to-explain
 
 # Install dependencies
-pip install opencv-python numpy
+pip install -r requirements.txt
 ```
 
 ### Testing the Camera
@@ -66,13 +66,50 @@ Press 'q' to quit, 's' to save a snapshot.
 # python main.py
 ```
 
+## Development
+
+### Setting up Development Environment
+
+```bash
+# Install development dependencies
+pip install -r requirements-dev.txt
+```
+
+### Running Tests
+
+The project includes comprehensive unit tests for all modules:
+
+```bash
+# Run all tests
+python3 test_camera_reader.py
+
+# Or use pytest for more detailed output
+pytest test_camera_reader.py -v
+
+# Run tests with coverage report
+pytest test_camera_reader.py --cov=camera_reader --cov-report=html
+```
+
+**Test Coverage:**
+- Camera initialization (CSI and USB)
+- Frame capture and reading
+- Resource management and cleanup
+- Context manager functionality
+- Error handling
+- GStreamer pipeline generation
+
+All tests use mocking to avoid requiring actual camera hardware.
+
 ## Project Structure
 
 ```
 point-to-explain/
-├── camera_reader.py      # Camera interface module for CSI/USB cameras
-├── README.md             # This file
-└── LICENSE               # MIT License
+├── camera_reader.py          # Camera interface module for CSI/USB cameras
+├── test_camera_reader.py     # Unit tests for camera module
+├── requirements.txt          # Core dependencies
+├── requirements-dev.txt      # Development dependencies
+├── README.md                 # This file
+└── LICENSE                   # MIT License
 ```
 
 ## Architecture
